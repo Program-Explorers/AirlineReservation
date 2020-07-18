@@ -1,6 +1,6 @@
 # Reservation
-import tkinter
-
+import tkinter as tk
+from tkinter import font
 
 class Reservation:
     first_num_seats = 20
@@ -55,4 +55,18 @@ person.is_round_trip()
 print(person.get_price())
 
 
+height = 500
+width = 600
 
+root = tk.Tk()
+
+root.title("Airline Reservation Program")
+
+canvas = tk.Canvas(root, height=height, width=width)
+canvas.pack()
+
+background_image = tk.PhotoImage(file='plane.png')
+background_label = tk.Label(root, image=background_image)
+background_label.place(relwidth=1, relheight=1)
+
+root.mainloop()
