@@ -56,7 +56,7 @@ class Reservation:
 
 root = tk.Tk()
 
-height = 225
+height = 325
 width = 400
 
 root.title("Airline Reservation")
@@ -114,10 +114,14 @@ num_seats_l = tk.Label(frame, text='Number of seats', bg='#336FD9', fg='#FFFFFF'
 num_seats_l.grid(row=2, pady=5)
 
 num_seats = tk.Scale(frame, from_=0, to=20, orient='horizontal')
-num_seats.place(relx=0.3, rely=0.6, relwidth=0.66)
+num_seats.place(relx=0.3, rely=0.425, relwidth=0.66)
+
+button = tk.Button(frame, text='Get Seats')
+button.place(relx=0.22, rely=0.7, relwidth=0.55, relheight=0.2)
 
 lower_frame = tk.Frame(root, bg='#2E9AFE')
 lower_frame.place(relx=0.2, rely=0.65, relwidth=0.6, relheight=0.25)
+
 
 root.mainloop()
 
