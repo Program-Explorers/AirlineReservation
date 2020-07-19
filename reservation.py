@@ -115,8 +115,10 @@ num_seats_l.grid(row=2, pady=5)
 num_seats = tk.Scale(frame, from_=0, to=20, orient='horizontal')
 num_seats.place(relx=0.3, rely=0.425, relwidth=0.66)
 
-button = tk.Button(frame, text='Get Seats',
-command=lambda: __str__(), get_price())
+person = Reservation(class_variable.get(), seat_type_variable.get(), num_seats.get(), 'yes')
+print(person.class_seat, person.num_seats, person.round_trip, person.get_price(), person.comfort)
+button = tk.Button(frame, text='Get Seats')
+
 button.place(relx=0.22, rely=0.7, relwidth=0.55, relheight=0.2)
 
 lower_frame = tk.Frame(root, bg='#2E9AFE')
