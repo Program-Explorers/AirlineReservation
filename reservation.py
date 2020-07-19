@@ -1,4 +1,4 @@
-# Reservation
+# Reservations
 import tkinter as tk
 
 
