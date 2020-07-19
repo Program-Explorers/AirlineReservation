@@ -44,8 +44,7 @@ class Reservation:
 
     def get_price(self):
         return self.cost * self.num_seats
-
-
+        
 # person = Reservation('First Class', 'Middle', 2, 'yes')
 
 # print(person)
@@ -116,7 +115,8 @@ num_seats_l.grid(row=2, pady=5)
 num_seats = tk.Scale(frame, from_=0, to=20, orient='horizontal')
 num_seats.place(relx=0.3, rely=0.425, relwidth=0.66)
 
-button = tk.Button(frame, text='Get Seats')
+button = tk.Button(frame, text='Get Seats',
+command=lambda: __str__(), get_price())
 button.place(relx=0.22, rely=0.7, relwidth=0.55, relheight=0.2)
 
 lower_frame = tk.Frame(root, bg='#2E9AFE')
