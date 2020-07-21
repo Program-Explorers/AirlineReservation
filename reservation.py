@@ -1,4 +1,3 @@
-# Reservations
 import tkinter as tk
 
 
@@ -22,8 +21,10 @@ class Reservation:
         elif self.class_seat == 'business':
             return "Comfortable"
 
-        else:
+        elif self.class_seat == 'economy':
             return "Fine"
+        else:
+            return 'Error'
 
     def price_calc(self):
         if self.class_seat == 'first':
@@ -51,20 +52,16 @@ def make_person(class_seat, type_seat, num_seat, round_trip):
     comfort = guy.seat_comfort()
     price = guy.get_price()
 
-    output['text'] = f'Your seat comfort is: {comfort} \nYour price is: {price}'
+    if comfort == 'Error':
+        output['text'] = 'Please choose a class!'
 
+    else:
+        output['text'] = f'Your seat comfort is: {comfort} \nYour price is: ${price}'
 
-# person = Reservation('First Class', 'Middle', 2, 'yes')
-
-# print(person)
-# person.price_calc()
-# print(person.seat_comfort())
-# person.is_round_trip()
-# print(person.get_price())
 
 root = tk.Tk()
 
-height = 325
+height = 350
 width = 400
 
 root.title("Airline Reservation")
@@ -77,7 +74,7 @@ background_label = tk.Label(root, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
 frame = tk.Frame(root, bg='#2E9AFE')
-frame.place(relx=0.06, rely=0.07, relwidth=0.9, relheight=0.55)
+frame.place(relx=0.06, rely=0.07, relwidth=0.9, relheight=0.6)
 
 creator = tk.Label(
     root,
@@ -116,19 +113,31 @@ window.grid(row=1, column=1, pady=5)
 middle.grid(row=1, column=2, pady=5)
 alley.grid(row=1, column=3, pady=5)
 
-num_seats_l = tk.Label(frame, text='Number of seats', bg='#336FD9', fg='#FFFFFF')
+num_seats_l = tk.Label(frame, text='Number of seats',
+                       bg='#336FD9', fg='#FFFFFF')
 num_seats_l.grid(row=2, pady=5)
 
 num_seats = tk.Scale(frame, from_=0, to=20, orient='horizontal')
-num_seats.place(relx=0.3, rely=0.425, relwidth=0.66)
+num_seats.place(relx=0.255, rely=0.36, relwidth=0.66)
 
-person = Reservation(class_variable.get(), seat_type_variable.get(), num_seats.get(), 'yes')
-button = tk.Button(frame, text='Get Seats', command=lambda: make_person(class_variable.get(), seat_type_variable.get(), num_seats.get(), 'yes'))
+round_trip = tk.Label(frame, text='Round Trip', bg='#336FD9', fg='#FFFFFF')
+round_trip.grid(row=3, column=0, pady=24)
 
-button.place(relx=0.22, rely=0.7, relwidth=0.55, relheight=0.2)
+round_var = tk.StringVar()
+round_yes = tk.Radiobutton(frame, text="Yes", variable=round_var,
+                           indicatoron=False, value="yes", width=8)
+round_no = tk.Radiobutton(frame, text="No", variable=round_var,
+                          indicatoron=False, value="no", width=8)
+round_yes.grid(row=3, column=1, pady=5)
+round_no.grid(row=3, column=2, pady=5)
+
+button = tk.Button(frame, text='Get Seats', command=lambda: make_person(
+    class_variable.get(), seat_type_variable.get(), num_seats.get(), round_var.get()))
+
+button.place(relx=0.22, rely=0.78, relwidth=0.52, relheight=0.18)
 
 lower_frame = tk.Frame(root, bg='#2E9AFE')
-lower_frame.place(relx=0.2, rely=0.65, relwidth=0.6, relheight=0.25)
+lower_frame.place(relx=0.2, rely=0.7, relwidth=0.6, relheight=0.2)
 
 output = tk.Label(lower_frame)
 output.place(relx=0.05, rely=0.12, relheight=0.77, relwidth=0.9)
