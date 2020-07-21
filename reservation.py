@@ -3,9 +3,6 @@ import tkinter as tk
 
 
 class Reservation:
-    first_num_seats = 20
-    business_num_seats = 50
-    eco_num_seats = 200
 
     def __init__(self, class_seat, seat, num_seats, round_trip):
         self.class_seat = class_seat
@@ -19,20 +16,20 @@ class Reservation:
         return f"You requested {self.num_seats} seats, a {self.seat} seat, in {self.class_seat}"
 
     def seat_comfort(self):
-        if self.class_seat == 'First Class':
+        if self.class_seat == 'first':
             return "Cozy"
 
-        elif self.class_seat == 'Business Class':
+        elif self.class_seat == 'business':
             return "Comfortable"
 
         else:
             return "Fine"
 
     def price_calc(self):
-        if self.class_seat == 'First Class':
+        if self.class_seat == 'first':
             self.cost += 1200
 
-        elif self.class_seat == 'Business Class':
+        elif self.class_seat == 'business':
             self.cost += 660
 
         else:
@@ -113,7 +110,7 @@ window = tk.Radiobutton(frame, text="Window", variable=seat_type_variable,
                         indicatoron=False, value="first", width=8)
 middle = tk.Radiobutton(frame, text="Middle", variable=seat_type_variable,
                         indicatoron=False, value="business", width=8)
-alley = tk.Radiobutton(frame, text="Alley", variable=seat_type_variable,
+alley = tk.Radiobutton(frame, text="Aisle", variable=seat_type_variable,
                        indicatoron=False, value="eco", width=8)
 window.grid(row=1, column=1, pady=5)
 middle.grid(row=1, column=2, pady=5)
@@ -134,6 +131,6 @@ lower_frame = tk.Frame(root, bg='#2E9AFE')
 lower_frame.place(relx=0.2, rely=0.65, relwidth=0.6, relheight=0.25)
 
 output = tk.Label(lower_frame)
-output.place(relheight=0.8, relwidth=0.9)
+output.place(relx=0.05, rely=0.12, relheight=0.77, relwidth=0.9)
 
 root.mainloop()
